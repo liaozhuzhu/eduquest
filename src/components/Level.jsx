@@ -3,15 +3,19 @@ import QuestionPage from '../pages/QuestionPage';
 
 function Level({ level }) {
   const [bgColor, setBgColor] = useState('bg-white');
+  const [hoverBgColor, setHoverBgColor] = useState('hover:bg-white');
   const [showContent, setShowContent] = useState(false);
 
   useEffect(() => {
     if (level === 1) {
       setBgColor('bg-green-500');
+      setHoverBgColor('hover:bg-green-600');
     } else if (level === 2) {
       setBgColor('bg-blue-500');
+        setHoverBgColor('hover:bg-blue-600');
     } else if (level === 3) {
       setBgColor('bg-yellow-500');
+        setHoverBgColor('hover:bg-yellow-600');
     }
 
     // Wait for 2 seconds before showing the content and triggering the animation
@@ -36,7 +40,7 @@ function Level({ level }) {
           </div>
         </div>
       </div>
-      <QuestionPage bgColor={bgColor}/>
+      <QuestionPage bgColor={bgColor} hoverBgColor={hoverBgColor}/>
     </div>
   );
 }

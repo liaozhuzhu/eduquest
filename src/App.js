@@ -9,6 +9,7 @@ import "@aws-amplify/ui-react/styles.css";
 import { Amplify, Auth } from 'aws-amplify';
 import { Authenticator } from '@aws-amplify/ui-react';
 import awsExports from './aws-exports';
+import Navbar from './components/Navbar.jsx';
 Amplify.configure(awsExports);
 
 
@@ -41,14 +42,12 @@ function App({ signOut }) {
 
   return (
     <div className="flex items-center justify-center h-screen">
+      <Routes>
+        <Route exact path="/" element={<Game signOut={handleSignOut}/>} />
+      </Routes>
       <Authenticator formFields={auth.formFields}> 
-      {/* <Authenticator formFields={auth.formFields} components={auth.components}>  */}
-        <Router>
-          <Routes>
-            <Route exact path="/" element={<Game signOut={handleSignOut}/>} />
-          </Routes>
-        </Router>
       </Authenticator>
+      <Navbar signOut={signOut}/>
     </div>
   );
 }
