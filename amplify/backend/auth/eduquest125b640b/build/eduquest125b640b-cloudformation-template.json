@@ -5,12 +5,6 @@
     "env": {
       "Type": "String"
     },
-    "identityPoolName": {
-      "Type": "String"
-    },
-    "allowUnauthenticatedIdentities": {
-      "Type": "String"
-    },
     "resourceNameTruncated": {
       "Type": "String"
     },
@@ -109,6 +103,24 @@
     },
     "dependsOn": {
       "Type": "CommaDelimitedList"
+    },
+    "userPoolGroups": {
+      "Type": "String"
+    },
+    "adminQueries": {
+      "Type": "String"
+    },
+    "hostedUI": {
+      "Type": "String"
+    },
+    "parentStack": {
+      "Type": "String"
+    },
+    "permissions": {
+      "Type": "CommaDelimitedList"
+    },
+    "authProviders": {
+      "Type": "CommaDelimitedList"
     }
   },
   "Conditions": {
@@ -202,11 +214,17 @@
           "Ref": "UserPool"
         },
         "ClientName": "eduque125b640b_app_clientWeb",
+        "ReadAttributes": {
+          "Ref": "userpoolClientReadAttributes"
+        },
         "RefreshTokenValidity": {
           "Ref": "userpoolClientRefreshTokenValidity"
         },
         "TokenValidityUnits": {
           "RefreshToken": "days"
+        },
+        "WriteAttributes": {
+          "Ref": "userpoolClientWriteAttributes"
         }
       },
       "DependsOn": [
@@ -223,11 +241,17 @@
         "GenerateSecret": {
           "Ref": "userpoolClientGenerateSecret"
         },
+        "ReadAttributes": {
+          "Ref": "userpoolClientReadAttributes"
+        },
         "RefreshTokenValidity": {
           "Ref": "userpoolClientRefreshTokenValidity"
         },
         "TokenValidityUnits": {
           "RefreshToken": "days"
+        },
+        "WriteAttributes": {
+          "Ref": "userpoolClientWriteAttributes"
         }
       },
       "DependsOn": [
@@ -402,108 +426,9 @@
       ],
       "UpdateReplacePolicy": "Delete",
       "DeletionPolicy": "Delete"
-    },
-    "IdentityPool": {
-      "Type": "AWS::Cognito::IdentityPool",
-      "Properties": {
-        "AllowUnauthenticatedIdentities": {
-          "Ref": "allowUnauthenticatedIdentities"
-        },
-        "CognitoIdentityProviders": [
-          {
-            "ClientId": {
-              "Ref": "UserPoolClient"
-            },
-            "ProviderName": {
-              "Fn::Sub": [
-                "cognito-idp.${region}.amazonaws.com/${client}",
-                {
-                  "region": {
-                    "Ref": "AWS::Region"
-                  },
-                  "client": {
-                    "Ref": "UserPool"
-                  }
-                }
-              ]
-            }
-          },
-          {
-            "ClientId": {
-              "Ref": "UserPoolClientWeb"
-            },
-            "ProviderName": {
-              "Fn::Sub": [
-                "cognito-idp.${region}.amazonaws.com/${client}",
-                {
-                  "region": {
-                    "Ref": "AWS::Region"
-                  },
-                  "client": {
-                    "Ref": "UserPool"
-                  }
-                }
-              ]
-            }
-          }
-        ],
-        "IdentityPoolName": {
-          "Fn::If": [
-            "ShouldNotCreateEnvResources",
-            "eduquest125b640b_identitypool_125b640b",
-            {
-              "Fn::Join": [
-                "",
-                [
-                  "eduquest125b640b_identitypool_125b640b__",
-                  {
-                    "Ref": "env"
-                  }
-                ]
-              ]
-            }
-          ]
-        }
-      },
-      "DependsOn": [
-        "UserPoolClientInputs"
-      ]
-    },
-    "IdentityPoolRoleMap": {
-      "Type": "AWS::Cognito::IdentityPoolRoleAttachment",
-      "Properties": {
-        "IdentityPoolId": {
-          "Ref": "IdentityPool"
-        },
-        "Roles": {
-          "unauthenticated": {
-            "Ref": "unauthRoleArn"
-          },
-          "authenticated": {
-            "Ref": "authRoleArn"
-          }
-        }
-      },
-      "DependsOn": [
-        "IdentityPool"
-      ]
     }
   },
   "Outputs": {
-    "IdentityPoolId": {
-      "Description": "Id for the identity pool",
-      "Value": {
-        "Ref": "IdentityPool"
-      }
-    },
-    "IdentityPoolName": {
-      "Value": {
-        "Fn::GetAtt": [
-          "IdentityPool",
-          "Name"
-        ]
-      }
-    },
     "UserPoolId": {
       "Description": "Id for the user pool",
       "Value": {

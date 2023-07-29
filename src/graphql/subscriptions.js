@@ -8,7 +8,7 @@ export const onCreateUser = /* GraphQL */ `
       username
       name
       parentName
-      parentEmail
+      email
       level
       reportCards {
         items {
@@ -37,7 +37,7 @@ export const onUpdateUser = /* GraphQL */ `
       username
       name
       parentName
-      parentEmail
+      email
       level
       reportCards {
         items {
@@ -66,7 +66,7 @@ export const onDeleteUser = /* GraphQL */ `
       username
       name
       parentName
-      parentEmail
+      email
       level
       reportCards {
         items {

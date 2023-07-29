@@ -7,7 +7,7 @@ type User @model {
   username: String!
   name: String!
   parentName: String!
-  parentEmail: String!
+  email: String!
   level: Int!
   reportCards: [ReportCard] @hasMany
 }
