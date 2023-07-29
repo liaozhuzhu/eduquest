@@ -1,7 +1,7 @@
 import './App.css';
 import { motion } from "framer-motion"
 import Game from './pages/Game.jsx'
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import {useEffect, useState} from 'react'
 
 import "@aws-amplify/ui-react/styles.css";
@@ -35,16 +35,16 @@ function App({ signOut }) {
 
   return (
     <Router>
-      {/* <Routes>
-        <Route exact path="/welcome" component={<Home/>} />
-      </Routes> */}
-      <View className="App">
+      <Routes>
+        <Route exact path="/" element={<Game signOut={signOut}/>} />
+      </Routes>
+      {/* <View className="App">
       <Card>
         <Image src={''} className="App-logo" alt="logo" />
         <Heading level={1}>We now have Auth!</Heading>
       </Card>
-      <Button onClick={signOut}>Sign Out</Button>
-    </View>
+      <Button >Sign Out</Button>
+    </View> */}
     </Router>
   );
 }

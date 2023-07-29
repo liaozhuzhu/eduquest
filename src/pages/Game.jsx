@@ -1,10 +1,10 @@
 import React from 'react'
 import Navbar from '../components/Navbar'
 
-function Game({ level }) {
+function Game({ level, signOut }) {
   return (
     <div className="flex justify-center items-center h-screen flex-col">
-        <Navbar />
+        <Navbar signOut={signOut}/>
         <div className="flex justify-center flex-col items-center w-full h-full">
         </div>
     </div>
