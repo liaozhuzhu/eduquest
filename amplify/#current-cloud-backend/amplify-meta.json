@@ -40,7 +40,7 @@
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-eduquest-dev-83710-deployment/amplify-cfn-templates/auth/eduquest125b640b-cloudformation-template.json",
         "logicalId": "autheduquest125b640b"
       },
-      "lastPushTimeStamp": "2023-07-29T13:46:53.532Z",
+      "lastPushTimeStamp": "2023-07-29T14:40:55.775Z",
       "output": {
         "UserPoolId": "us-east-2_LRS210mIb",
         "AppClientIDWeb": "2ghrr0u4c06p3pbbms0i9o4ial",
@@ -51,6 +51,40 @@
         "UserPoolName": "eduquest125b640b_userpool_125b640b"
       },
       "lastPushDirHash": "x4grHgY1Ry1U6O6AQqGZ3eeOnXM="
+    }
+  },
+  "api": {
+    "eduquestUser": {
+      "service": "AppSync",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [
+        {
+          "category": "auth",
+          "resourceName": "eduquest125b640b",
+          "attributes": [
+            "UserPoolId"
+          ]
+        }
+      ],
+      "output": {
+        "authConfig": {
+          "defaultAuthentication": {
+            "authenticationType": "AMAZON_COGNITO_USER_POOLS",
+            "userPoolConfig": {
+              "userPoolId": "autheduquest125b640b"
+            }
+          },
+          "additionalAuthenticationProviders": []
+        },
+        "GraphQLAPIIdOutput": "7ybvab4mezhvdhk3h6ifyash3i",
+        "GraphQLAPIEndpointOutput": "https://rvinnpgev5gaxfat5mr7c3dq5y.appsync-api.us-east-2.amazonaws.com/graphql"
+      },
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-eduquest-dev-83710-deployment/amplify-cfn-templates/api/cloudformation-template.json",
+        "logicalId": "apieduquestUser"
+      },
+      "lastPushTimeStamp": "2023-07-29T14:40:57.464Z",
+      "lastPushDirHash": "o4Bd6otefBN5nwA+keDHkkMgrV0="
     }
   }
 }
