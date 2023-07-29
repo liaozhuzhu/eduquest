@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-eduquest-dev-83710-authRole",
+      "UnauthRoleArn": "arn:aws:iam::366302787092:role/amplify-eduquest-dev-83710-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::366302787092:role/amplify-eduquest-dev-83710-authRole",
+      "Region": "us-east-2",
+      "DeploymentBucketName": "amplify-eduquest-dev-83710-deployment",
+      "UnauthRoleName": "amplify-eduquest-dev-83710-unauthRole",
+      "StackName": "amplify-eduquest-dev-83710",
+      "StackId": "arn:aws:cloudformation:us-east-2:366302787092:stack/amplify-eduquest-dev-83710/05adc810-2e15-11ee-95b8-066b0add9217",
+      "AmplifyAppId": "d3odbrxi6z73rg"
+    },
+    "categories": {
+      "auth": {
+        "eduquest125b640b": {}
+      }
+    }
+  }
+}

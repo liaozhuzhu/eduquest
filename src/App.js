@@ -4,7 +4,17 @@ import Home from './pages/Home.jsx'
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import {useEffect, useState} from 'react'
 
-function App() {
+import "@aws-amplify/ui-react/styles.css";
+import {
+  withAuthenticator,
+  Button,
+  Heading,
+  Image,
+  View,
+  Card,
+} from "@aws-amplify/ui-react";
+
+function App({ signOut }) {
   const [showTitle, setShowTitle] = useState(true)
 
  useEffect(() => {
@@ -21,13 +31,19 @@ function App() {
 
   return (
     <Router>
-      <div>
-        <Routes>
-          <Route exact path="/welcome" component={<Home/>} />
-        </Routes>
-      </div>
+      {/* <Routes>
+        <Route exact path="/welcome" component={<Home/>} />
+      </Routes> */}
+      <View className="App">
+      <Card>
+        <Image src={''} className="App-logo" alt="logo" />
+        <Heading level={1}>We now have Auth!</Heading>
+      </Card>
+      <Button onClick={signOut}>Sign Out</Button>
+    </View>
     </Router>
   );
 }
 
-export default App;
+export default withAuthenticator(App);
+
