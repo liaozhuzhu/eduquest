@@ -1,6 +1,6 @@
 import './App.css';
 import { motion } from "framer-motion"
-import Home from './pages/Home.jsx'
+import Game from './pages/Game.jsx'
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import {useEffect, useState} from 'react'
 
@@ -32,7 +32,7 @@ function App() {
           </div>
         )}
         <Routes>
-          <Route exact path="/" element={<Home/>} />
+          <Route exact path="/" element={<Game/>} />
         </Routes>
       </div>
     </Router>
