@@ -19,7 +19,7 @@ function Navbar({ signOut }) {
 
   return (
     <div
-      className="flex fixed z-1 top-0 right-0 w-full justify-between items-center p-4"
+      className="flex fixed z-1 top-0 right-0 w-full justify-between items-center p-4 bg-white"
       onClick={handleClickOutside}
     >
       <Link to="/">
