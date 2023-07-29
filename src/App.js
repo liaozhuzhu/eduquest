@@ -19,11 +19,20 @@ function App() {
     }
   }, []);
 
+  const handleTitleClick = () => {
+    setShowTitle(false);
+  };
+
   return (
     <Router>
       <div>
+        {showTitle && (
+          <div className="flex justify-center items-center h-screen">
+              <h1 className="text-lg font-semibold" onClick={handleTitleClick}>EduQuest</h1>
+          </div>
+        )}
         <Routes>
-          <Route exact path="/welcome" component={<Home/>} />
+          <Route exact path="/" element={<Home/>} />
         </Routes>
       </div>
     </Router>
