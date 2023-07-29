@@ -3,16 +3,14 @@ import { motion } from "framer-motion"
 import Game from './pages/Game.jsx'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import {useEffect, useState} from 'react'
+import auth from './customAuth';
 
 import "@aws-amplify/ui-react/styles.css";
-import {
-  withAuthenticator,
-  Button,
-  Heading,
-  Image,
-  View,
-  Card,
-} from "@aws-amplify/ui-react";
+import { Amplify, Auth } from 'aws-amplify';
+import { Authenticator } from '@aws-amplify/ui-react';
+import awsExports from './aws-exports';
+Amplify.configure(awsExports);
+
 
 function App({ signOut }) {
   const [showTitle, setShowTitle] = useState(true)
@@ -33,19 +31,25 @@ function App({ signOut }) {
     setShowTitle(false);
   };
 
+  const handleSignOut = async () => {
+    try {
+      await Auth.signOut();
+    } catch (error) {
+      console.log('Error signing out:', error);
+    }
+  };
+
   return (
-    <Router>
-      <Routes>
-        <Route exact path="/" element={<Game signOut={signOut}/>} />
-      </Routes>
-      {/* <View className="App">
-      <Card>
-        <Image src={''} className="App-logo" alt="logo" />
-        <Heading level={1}>We now have Auth!</Heading>
-      </Card>
-      <Button >Sign Out</Button>
-    </View> */}
-    </Router>
+    <div className="flex items-center justify-center h-screen">
+      <Authenticator formFields={auth.formFields}> 
+      {/* <Authenticator formFields={auth.formFields} components={auth.components}>  */}
+        <Router>
+          <Routes>
+            <Route exact path="/" element={<Game signOut={handleSignOut}/>} />
+          </Routes>
+        </Router>
+      </Authenticator>
+    </div>
   );
 }
 
