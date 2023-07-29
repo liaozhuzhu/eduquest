@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import QuestionInput from '../components/QuestionInput';
+import { Link } from 'react-router-dom';
 
-function QuestionPage({ bgColor, hoverBgColor }) {
+function QuestionPage({ bgColor, hoverBgColor, setScore }) {
   const [hoverColor, setHoverColor] = useState('hover:bg-white');
   const [questions, setQuestions] = useState({1: "", 2: "", 3: "", 4: "", 5: "", 6: ""});
   const [answers, setAnswers] = useState({1: "", 2: "", 3: "", 4: "", 5: "", 6: ""});
@@ -20,7 +21,7 @@ function QuestionPage({ bgColor, hoverBgColor }) {
         model: "gpt-3.5-turbo",
         messages: [
           systemMessage,
-          { role: "user", content:  `Write 6 math questions for a ${grade} grader to answer. Your response should be seperated by only a single '\n'. Do not start each question with a number. Your response must leave out any unneccessary phrases or responses` },
+          { role: "user", content:  `Write 6 math questions for a ${grade} grader to answer. Your response should be seperated by only a single '\n'. Do not start each question with a number. Keep the answer relatively short. Your response must leave out any unneccessary phrases or responses` },
         ],
       };
 
@@ -86,7 +87,7 @@ function QuestionPage({ bgColor, hoverBgColor }) {
       }
     }
 
-    alert(`Your score: ${score}/6`);
+    setScore(score);
   };
 
   useEffect(() => {
@@ -166,13 +167,15 @@ function QuestionPage({ bgColor, hoverBgColor }) {
       </div>
 
       <div className="mt-auto mb-4 flex justify-center items-center gap-2">
-        <button
-          type="button"
-          className={`py-2 px-4 ${bgColor} rounded-md ${hoverBgColor} text-white`}
-          onClick={handleSubmit}
-        >
-          Submit
-        </button>
+        <Link to="/report">
+          <button
+            type="button"
+            className={`py-2 px-4 ${bgColor} rounded-md ${hoverBgColor} text-white`}
+            onClick={handleSubmit}
+          >
+            Submit
+          </button>
+        </Link>
         <button
           type="submit"
           className={`py-2 px-4 ${bgColor} rounded-md ${hoverBgColor} text-white`}

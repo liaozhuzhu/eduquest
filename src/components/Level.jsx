@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import QuestionPage from '../pages/QuestionPage';
 
-function Level({ level }) {
+function Level({ level, setScore }) {
   const [bgColor, setBgColor] = useState('bg-white');
   const [hoverBgColor, setHoverBgColor] = useState('hover:bg-white');
   const [showContent, setShowContent] = useState(false);
@@ -40,7 +40,7 @@ function Level({ level }) {
           </div>
         </div>
       </div>
-      <QuestionPage bgColor={bgColor} hoverBgColor={hoverBgColor}/>
+      <QuestionPage bgColor={bgColor} hoverBgColor={hoverBgColor} setScore={setScore} />
     </div>
   );
 }
