@@ -40,7 +40,7 @@
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-eduquest-dev-83710-deployment/amplify-cfn-templates/auth/eduquest125b640b-cloudformation-template.json",
         "logicalId": "autheduquest125b640b"
       },
-      "lastPushTimeStamp": "2023-07-29T14:40:55.775Z",
+      "lastPushTimeStamp": "2023-07-29T19:04:28.826Z",
       "output": {
         "UserPoolId": "us-east-2_LRS210mIb",
         "AppClientIDWeb": "2ghrr0u4c06p3pbbms0i9o4ial",
@@ -50,7 +50,7 @@
         "IdentityPoolName": "eduquest125b640b_identitypool_125b640b__dev",
         "UserPoolName": "eduquest125b640b_userpool_125b640b"
       },
-      "lastPushDirHash": "x4grHgY1Ry1U6O6AQqGZ3eeOnXM="
+      "lastPushDirHash": "sJv7fOKoV3CEknSoUwrApuo4rNg="
     }
   },
   "api": {
@@ -83,8 +83,8 @@
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-eduquest-dev-83710-deployment/amplify-cfn-templates/api/cloudformation-template.json",
         "logicalId": "apieduquestUser"
       },
-      "lastPushTimeStamp": "2023-07-29T14:40:57.464Z",
-      "lastPushDirHash": "o4Bd6otefBN5nwA+keDHkkMgrV0="
+      "lastPushTimeStamp": "2023-07-29T19:04:28.633Z",
+      "lastPushDirHash": "QOzYSnuLpVKjzQ9QjIkv8+4JPTw="
     }
   }
 }

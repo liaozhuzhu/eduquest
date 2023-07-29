@@ -1,8 +1,6 @@
 {
   "version": "1",
   "cognitoConfig": {
-    "identityPoolName": "eduquest125b640b_identitypool_125b640b",
-    "allowUnauthenticatedIdentities": false,
     "resourceNameTruncated": "eduque125b640b",
     "userPoolName": "eduquest125b640b_userpool_125b640b",
     "autoVerifiedAttributes": [
@@ -32,15 +30,37 @@
       "email"
     ],
     "userpoolClientLambdaRole": "eduque125b640b_userpoolclient_lambda_role",
-    "userpoolClientSetAttributes": false,
+    "userpoolClientSetAttributes": true,
     "sharedId": "125b640b",
     "resourceName": "eduquest125b640b",
-    "authSelections": "identityPoolAndUserPool",
-    "useDefault": "default",
+    "authSelections": "userPoolOnly",
+    "useDefault": "manual",
     "triggers": {},
     "userPoolGroupList": [],
     "serviceName": "Cognito",
     "usernameCaseSensitive": false,
-    "useEnabledMfas": true
+    "useEnabledMfas": true,
+    "authRoleArn": {
+      "Fn::GetAtt": [
+        "AuthRole",
+        "Arn"
+      ]
+    },
+    "unauthRoleArn": {
+      "Fn::GetAtt": [
+        "UnauthRole",
+        "Arn"
+      ]
+    },
+    "breakCircularDependency": true,
+    "dependsOn": [],
+    "userPoolGroups": false,
+    "adminQueries": false,
+    "hostedUI": false,
+    "parentStack": {
+      "Ref": "AWS::StackId"
+    },
+    "permissions": [],
+    "authProviders": []
   }
 }

@@ -8,7 +8,7 @@ export const getUser = /* GraphQL */ `
       username
       name
       parentName
-      parentEmail
+      email
       level
       reportCards {
         items {
@@ -42,7 +42,7 @@ export const listUsers = /* GraphQL */ `
         username
         name
         parentName
-        parentEmail
+        email
         level
         reportCards {
           nextToken
