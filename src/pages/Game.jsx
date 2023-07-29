@@ -6,7 +6,7 @@ function Game({ signOut }) {
   return (
     <div className="h-screen">
         <Navbar signOut={signOut}/>
-        <Level level={1}/>
+        <Level level={2}/>
     </div>
   )
 }
