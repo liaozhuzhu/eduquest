@@ -9,9 +9,7 @@ function QuestionPage({ bgColor }) {
 
   let apiKey = process.env.REACT_APP_OPENAI_API_KEY;
 
-
-  const generateQuestions = async () => {
-    const apiRequests = [];
+    const generateQuestions = async () => {
       const systemMessage = {
         role: "system",
         content:
@@ -33,10 +31,20 @@ function QuestionPage({ bgColor }) {
         },
         body: JSON.stringify(apiRequestBody),
       }).then((data) => data.json()).then((data) => {
-        [questions[1], questions[2], questions[3], questions[4], questions[5], questions[6]] = (data["choices"][0]["message"]["content"]).split("\n")
+        setQuestions((prevQuestions) => {
+          return {
+            ...prevQuestions,
+            1: data["choices"][0]["message"]["content"].split("\n")[0],
+            2: data["choices"][0]["message"]["content"].split("\n")[1],
+            3: data["choices"][0]["message"]["content"].split("\n")[2],
+            4: data["choices"][0]["message"]["content"].split("\n")[3],
+            5: data["choices"][0]["message"]["content"].split("\n")[4],
+            6: data["choices"][0]["message"]["content"].split("\n")[5],
+          };
+        }
+        );
       });
   };
-
 
   useEffect(() => {
     if (bgColor === 'bg-green-500') {
@@ -46,6 +54,7 @@ function QuestionPage({ bgColor }) {
     } else if (bgColor === 'bg-yellow-500') {
       setHoverColor('hover:bg-yellow-600');
     }
+
     generateQuestions();
   }, []);
 

@@ -17,7 +17,7 @@ function Level({ level }) {
     // Wait for 2 seconds before showing the content and triggering the animation
     const timer = setTimeout(() => {
       setShowContent(true);
-    }, 2000);
+    }, 1000);
 
     // Clear the timer to avoid memory leaks
     return () => clearTimeout(timer);
