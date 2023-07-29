@@ -7,32 +7,33 @@ function QuestionPage({ bgColor }) {
   const [hoverColor, setHoverColor] = useState('hover:bg-white');
   const [response, setResponse] = useState('');
 
-  // make a function that calls the openai api using model 3.5 turbo and the prompt: "hello"
-  const callOpenAI = async () => {
-    const configuration = new Configuration({
-      apiKey: '',
-    });
 
-    const openai = new OpenAIApi(configuration);
-
-    const prompt = 'hello';
-
-    const gptResponse = await openai.complete({
-      engine: 'davinci',
-      prompt: prompt,
-      maxTokens: 5,
-      temperature: 0.5,
-      topP: 1,
-      presencePenalty: 0,
-      frequencyPenalty: 0,
-      bestOf: 1,
-      n: 1,
-      stream: false,
-      stop: ['\n'],
-    });
-
-    setResponse(gptResponse.data.choices[0].text);
-  };
+  const generateQuestions = async () => {
+    
+    const systemMessage = {
+      role: "system",
+      content: "You are an AI who's job is print out math questions for students to answer."
+    }
+    const apiRequestBody = {
+      "model": "gpt-3.5-turbo",
+      "messages": [
+        systemMessage,
+        {role: "user", content: "Generate a single math question for a first grader to answer."},
+      ]
+    }
+    await fetch("https://api.openai.com/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        "Authorization": "Bearer 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",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(apiRequestBody)
+    }).then((data) => {
+      return data.json()
+    }).then((data) => {
+      console.log(data)
+    })
+  }
 
   useEffect(() => {
     if (bgColor === 'bg-green-500') {
@@ -42,8 +43,8 @@ function QuestionPage({ bgColor }) {
     } else if (bgColor === 'bg-yellow-500') {
       setHoverColor('hover:bg-yellow-600');
     }
-    callOpenAI();
-  }, [bgColor]);
+    generateQuestions();
+  }, []);
 
   return (
     <div className={`h-screen flex flex-col justify-center items-center`}>
