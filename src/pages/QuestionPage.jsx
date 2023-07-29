@@ -12,7 +12,6 @@ function QuestionPage({ bgColor }) {
 
   const generateQuestions = async () => {
     const apiRequests = [];
-    // for (let i = 0; i < 6; i++) {
       const systemMessage = {
         role: "system",
         content:
@@ -34,39 +33,8 @@ function QuestionPage({ bgColor }) {
         },
         body: JSON.stringify(apiRequestBody),
       }).then((data) => data.json()).then((data) => {
-        let [question1, question2, question3, question4, question5, question6] = data["choices"][0]["message"]["content"].split("\n")
-        console.log(question1);
-        console.log(question2);
-        console.log(question3);
-        console.log(question4);
-        console.log(question5);
-        console.log(question6);
+        [questions[1], questions[2], questions[3], questions[4], questions[5], questions[6]] = (data["choices"][0]["message"]["content"]).split("\n")
       });
-      // apiRequests.push(
-      //   fetch("https://api.openai.com/v1/chat/completions", {
-      //     method: "POST",
-      //     headers: {
-      //       Authorization: "Bearer " + apiKey,
-      //       "Content-Type": "application/json",
-      //     },
-      //     body: JSON.stringify(apiRequestBody),
-      //   }).then((data) => data.json())
-      // );
-
-    // }
-
-    // try {
-    //   const responses = await Promise.all(apiRequests);
-    //   setQuestions((prevQuestions) => {
-    //     const updatedQuestions = { ...prevQuestions };
-    //     responses.forEach((data, index) => {
-    //       updatedQuestions[index + 1] = data["choices"][0]["message"]["content"];
-    //     });
-    //     return updatedQuestions;
-    //   });
-    // } catch (error) {
-    //   console.error("Error fetching questions:", error);
-    // }
   };
 
 
