@@ -1,6 +1,6 @@
 import './App.css';
 import { motion } from "framer-motion"
-import Home from './pages/Home.jsx'
+import Game from './pages/Game.jsx'
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import {useEffect, useState} from 'react'
 
@@ -28,6 +28,10 @@ function App({ signOut }) {
       localStorage.setItem('hasVisited', 'true');
     }
   }, []);
+
+  const handleTitleClick = () => {
+    setShowTitle(false);
+  };
 
   return (
     <Router>
