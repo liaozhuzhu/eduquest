@@ -7,12 +7,14 @@ function QuestionPage({ bgColor }) {
   const [hoverColor, setHoverColor] = useState('hover:bg-white');
   const [response, setResponse] = useState('');
 
+  let apiKey = process.env.REACT_APP_OPENAI_API_KEY;
+
 
   const generateQuestions = async () => {
     
     const systemMessage = {
       role: "system",
-      content: "You are an AI who's job is print out math questions for students to answer."
+      content: "You are an AI who's job is print out math questions for students to answer. Only respond with the question don't start by saying sure for example just go right into the question."
     }
     const apiRequestBody = {
       "model": "gpt-3.5-turbo",
@@ -24,7 +26,7 @@ function QuestionPage({ bgColor }) {
     await fetch("https://api.openai.com/v1/chat/completions", {
       method: "POST",
       headers: {
-        "Authorization": "Bearer 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",
+        "Authorization": "Bearer " + apiKey,
         "Content-Type": "application/json"
       },
       body: JSON.stringify(apiRequestBody)
