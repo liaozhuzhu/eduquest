@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 function SettingsDropdown({ signOut }) {
   return (
-    <div className="flex justify-center items-center flex-col w-20 border-stone-600 border-2 h-auto absolute top-8 right-0 gap-1">
+    <div className="flex justify-center items-center flex-col w-20 border-stone-600 border-2 h-auto absolute top-8 right-0 gap-1 bg-white">
       <Link to="/profile" className="cursor-pointer w-full">
         <div className="flex justify-center items-center text-lg text-center hover:text-black">
           Profile
